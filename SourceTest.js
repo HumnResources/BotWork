@@ -72,19 +72,15 @@ setTimeout(() => exit());
 // Script Start
  Conditions();
  switch (Status) {
-
   case "Closed":
    flashLong(Status);
   exit();
-
   case "Bots Disabled":
    flashLong(Status);
   exit();
-
   case "Background":
    flashLong(Status);
   exit();
-
   case "Ready":
    Shuffle()
    Conditions();
@@ -109,7 +105,6 @@ setTimeout(() => exit());
     };
    };
   exit();
-
   default:
    flashLong("Error");
   exit()
