@@ -1,7 +1,7 @@
 setTimeout(() => exit());
 
 // Function and Variable Declarations
- var TOGGLE; // RS Bot Toggle Button
+ var TOGGLE; // Bot Toggle Button
  var PID; // Process ID
  var Status;
  var rand = function(max, min){
