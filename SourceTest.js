@@ -1,8 +1,8 @@
 setTimeout(() => exit());
 
 // Function and Variable Declarations
- var TOGGLE; //RS Bot Toggle Button
- var PID; // Runescape Process ID
+ var TOGGLE; // RS Bot Toggle Button
+ var PID; // Process ID
  var Status;
  var rand = function(max, min){
   return Math.floor(Math.random() * (max - min + 1)) + min;
