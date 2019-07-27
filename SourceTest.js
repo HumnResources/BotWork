@@ -33,7 +33,7 @@ setTimeout(() => exit());
  
 // More Functions  
  function Conditions(){
-  var tmp = shell("cat /proc/$(pidof com.jagex.runescape.android)/oom_adj", true, 0);
+  var tmp = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
   PID = parseInt(tmp, 10);
   TOGGLE = global("%BotToggle");
   Status = PID + TOGGLE;
@@ -114,16 +114,19 @@ setTimeout(() => exit());
    var loops = 0;
    while (Status == "Ready"){ 
     
+    loopStart = new Date().getSeconds();
     loops++;    
     touch(bankWAIT, BANK);
-    touch(psetWAIT, PSET); 
+    touch(psetWAIT, PSET); // Stops after this action
     touch(invWAIT, INV);    
     touch(startWAIT, START);     
-    sleepFor(restartWAIT);  
-
+    sleepFor(restartWAIT);
+    loopFinish = new Date().getSeconds();
+    
+    loopCycle = (loopFinish - loopStart);
+    flash('Loops: ' + loops + ' | ' + loopCycle + 'Seconds'  );
     Shuffle();
     Conditions();
-    flash("Loops: " + loops);
     
     if (Status != "Ready") {
      flash("Bot Closing");
