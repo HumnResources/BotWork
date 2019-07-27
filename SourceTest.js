@@ -26,8 +26,8 @@ setTimeout(() => exit());
   START = [startX, startY];
  }; 
 // More Functions  
- var Conditions = () => ({
-  var tmp = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
+ var Conditions = () => {
+  var tmp = shell("cat /proc/$(pidof com.jagex.runescape.android)/oom_adj", true, 0);
   PID = parseInt(tmp, 10);
   TOGGLE = global("%BotToggle");
   Status = PID + TOGGLE;
@@ -45,15 +45,15 @@ setTimeout(() => exit());
      return Status = "Background"
      break;
    };
- });
+ };
  var sleepFor = time => { var now = new Date().getTime();
    while(new Date().getTime() < now + time){ } };
  var touch = (time, loc) => {
   sleepFor(time); 
    var tapX = loc[0];
    var tapY = loc[1];
-   var tskr = shell("history -c ", true, time); 
-   return tskr = shell("input tap " + tapX + ' ' + tapY, true, time);
+   var tskr = shell("input tap " + tapX + ' ' + tapY, true, time);
+   return tskr = shell("history -d", true, time); 
   };
 // Script Start
  Conditions();
@@ -71,17 +71,13 @@ setTimeout(() => exit());
    Shuffle()
    Conditions();
    flash(Status); 
-   var loops = 0;
-   while (Status == "Ready"){ 
-    var loops++;    
+   for (loops = 1; Status == "Ready"; loops++, Shuffle(), Conditions()){    
     touch(bankWAIT, BANK); // Stops somewhere around
-    touch(psetWAIT, PSET); // Here usually ... 2 loops
+    touch(psetWAIT, PSET); // Here usually ... 2 loops max
     touch(invWAIT, INV);    
     touch(startWAIT, START);     
     sleepFor(restartWAIT);
     flash("loops: " + loops) 
-    Shuffle();
-    Conditions(); 
     if (Status != "Ready") {
      flash("Bot Closing");
     };
