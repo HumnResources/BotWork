@@ -81,8 +81,8 @@ setTimeout(() => exit());
    //var tmp = function(){
     var tapX = loc[0];
     var tapY = loc[1];
-    //var tskr = shell("sleep " + (time/900), true, 0); 
-    var tskr = shell("input tap " + tapX + ' ' + tapY, true, 0);
+    var tskr = shell("history -c ", true, time); 
+    var tskr = shell("input tap " + tapX + ' ' + tapY, true, time);
    //};
    //return tmp;
   };
@@ -114,17 +114,18 @@ setTimeout(() => exit());
    var loops = 0;
    while (Status == "Ready"){ 
     
-    loopStart = new Date().getSeconds();
-    loops++;    
-    touch(bankWAIT, BANK);
-    touch(psetWAIT, PSET); // Stops after this action
+    //loopStart = new Date().getSeconds();
+    var loops++;    
+    touch(bankWAIT, BANK); // Stops somewhere around
+    touch(psetWAIT, PSET); // Here usually ... 2 loops
     touch(invWAIT, INV);    
     touch(startWAIT, START);     
     sleepFor(restartWAIT);
-    loopFinish = new Date().getSeconds();
+    flash("loops")
+    //loopFinish = new Date().getSeconds();
     
-    loopCycle = (loopFinish - loopStart);
-    flash('Loops: ' + loops + ' | ' + loopCycle + ' Seconds'  );
+    //loopCycle = (loopFinish - loopStart);
+    //flash('Loops: ' + loops + ' | ' + loopCycle + ' Seconds'  );
     Shuffle();
     Conditions();
     
