@@ -36,7 +36,7 @@ setTimeout(() => exit());
  };
  var Conditions = () => {
   sleepFor(50);
-  var tskr = shell("cat /proc/$(pidof com.jagex.runescape.android)/oom_adj", true, 0);
+  var tskr = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
   var Toggle = parseInt((global("%BotToggle")), 10);
   var PID = parseInt(tskr, 10);
   Status = PID + Toggle || null;
