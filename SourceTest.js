@@ -34,7 +34,6 @@ setTimeout(() => exit());
   var tskr = shell("input tap " + tapX + ' ' + tapY, true, time);
   var tskr = shell("history -d", true, time); 
  };
-// More Functions  
  var Conditions = () => {
   sleepFor(50);
   var tskr = shell("cat /proc/$(pidof com.jagex.runescape.android)/oom_adj", true, 0);
