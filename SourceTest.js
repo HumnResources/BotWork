@@ -124,7 +124,7 @@ setTimeout(() => exit());
     loopFinish = new Date().getSeconds();
     
     loopCycle = (loopFinish - loopStart);
-    flash('Loops: ' + loops + ' | ' + loopCycle + 'Seconds'  );
+    flash('Loops: ' + loops + ' | ' + loopCycle + ' Seconds'  );
     Shuffle();
     Conditions();
     
