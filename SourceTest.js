@@ -3,7 +3,7 @@ setTimeout(() => exit());
 // Function and Variable Declarations
  var TOGGLE; // Bot Toggle Button
  var PID; // Process ID
- var Status;
+ var Status; // Process ID + Toggle
  var rand = function(max, min){
   return Math.floor(Math.random() * (max - min + 1)) + min;
  };
@@ -16,21 +16,21 @@ setTimeout(() => exit());
   var psetY = rand(1218, 1213);
   var startX = rand(2362, 1373);
   var startY = rand(1315, 1230);
-
+  
 // Random Wait Times in Milliseconds
   bankWAIT = rand(1700, 2700);
-  psetWAIT = (rand(1680, 3000) + bankWAIT);
-  invWAIT = (rand(1500, 2750) + psetWAIT);
-  startWAIT = (rand(1700, 3000) + invWAIT);
-  restartWAIT = (rand(10900, 11200) + startWAIT);
-   
+  psetWAIT = rand(1680, 3000);
+  invWAIT = rand(1500, 2750);
+  startWAIT = rand(1700, 3000);
+  restartWAIT = rand(10900, 11200);   
+  
 // Location Set
   BANK = [bankX, bankY];
   INV = [invX, invY];
   PSET = [psetX, psetY];
   START = [startX, startY];
  };
-
+ 
 // More Functions  
  function Conditions(){
   var tmp = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
@@ -56,34 +56,35 @@ setTimeout(() => exit());
    var tmp = function(){
     var tapX = loc[0];
     var tapY = loc[1];
-    var tskr = shell("sleep "+ (time/1000), true, 0); 
+    var tskr = shell("sleep "+ (time/900), true, 0); 
     var tskr = shell("input tap " + tapX + ' ' + tapY, true, time);
    };
    return tmp();
   };
  function pause(time) { 
   var tmp = function(){
-   var tskr = shell("sleep "+ (time/1000), true, 0); 
+   var tskr = shell("sleep "+ (time/900), true, time); 
    return tskr; 
   };
   return tmp();
  }; 
-
+ 
 // Script Start
  Conditions();
  switch (Status) {
   case "Closed":
-   flashLong(Status);
+   flash(Status);
   exit();
   case "Bots Disabled":
-   flashLong(Status);
+   flash(Status);
   exit();
   case "Background":
-   flashLong(Status);
+   flash(Status);
   exit();
   case "Ready":
    Shuffle()
    Conditions();
+   flash(Status); // This flash is not appearing
    var loops = 0;
    while (Status == "Ready"){ 
     Shuffle();
@@ -92,16 +93,17 @@ setTimeout(() => exit());
     //pause(300);
     touch(psetWAIT, PSET);
     //pause(300);
-    touch(invWAIT, INV);
+    touch(invWAIT, INV); // Pause here after 2 iterations
     //pause(300);
     touch(startWAIT, START); 
     //pause(300);
     pause(restartWAIT);
-    //pause(3000);
+    wait(300);
     flash("Loops: " + loops);
     Conditions();
+    wait(100);
     if (Status != "Ready") {
-     flashLong("Bot Closing");
+     flash("Bot Closing");
     };
    };
   exit();
