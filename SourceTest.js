@@ -1,5 +1,4 @@
 setTimeout(() => exit());
-
 // Function and Variable Declarations
  var TOGGLE; // Bot Toggle Button
  var PID; // Process ID
@@ -25,8 +24,7 @@ setTimeout(() => exit());
   INV = [invX, invY];
   PSET = [psetX, psetY];
   START = [startX, startY];
- };
- 
+ }; 
 // More Functions  
  var Conditions = () => ({
   var tmp = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
@@ -57,22 +55,18 @@ setTimeout(() => exit());
    var tskr = shell("history -c ", true, time); 
    return tskr = shell("input tap " + tapX + ' ' + tapY, true, time);
   };
-
 // Script Start
  Conditions();
  switch (Status) {
   case "Closed":
    flash(Status);
   exit();
-  
   case "Bots Disabled":
    flash(Status);
   exit();
-  
   case "Background":
    flash(Status);
-  exit();
-  
+  exit(); 
   case "Ready":
    Shuffle()
    Conditions();
@@ -93,12 +87,10 @@ setTimeout(() => exit());
     };
    };
   exit();
-   
   default:
    flashLong("Error");
   exit()
  };
-
 exit(); 
 
 
