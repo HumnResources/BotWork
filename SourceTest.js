@@ -42,16 +42,17 @@ setTimeout(() => exit());
   Status = PID + Toggle || null;
   if (Status >= 9) { Status = "bkgrnd"; };
   switch (Status){
+   default: flashLong("Conditions Error"); break;
    case null: Status = "Closed"; break;
    case "bkgrnd": Status = "Background"; break;
    case 1: Status = "Ready"; break;
    case 2: Status = "Bots Disabled"; break;
-   default: flashLong("Conditions Error"); break;
   };
  };
 // Script Start
  Conditions();
  switch (Status) {
+  default: flashLong("Script Error"); break;
   case "Closed": flash(Status); break;
   case "Bots Disabled": flash(Status); break;
   case "Background": flash(Status); break;
@@ -65,6 +66,5 @@ setTimeout(() => exit());
     flash("loops: " + loops) 
     if (Status != "Ready") { flash("Bot Closing"); };
    };
-  default: flashLong("Script Error"); break;
  };
 exit();
