@@ -1,8 +1,6 @@
 setTimeout(() => exit());
 // Function and Variable Declarations
- var Toggle; // Bot Toggle Button
- var PID; // Process ID
- var Status; // Process ID + Toggle
+ var Status; // Process ID + Toggle on/off
  var rand = (max, min) => {return Math.floor(Math.random() * (max - min + 1)) + min;};
  var Shuffle = () => {
  var bankX = rand(1933, 1863);
@@ -24,7 +22,7 @@ setTimeout(() => exit());
  INV = [invX, invY];
  PSET = [psetX, psetY];
  START = [startX, startY];
- }; 
+ };// Shuffle end
  var sleepFor = time => { var now = new Date().getTime();
    while (new Date().getTime() < now + time){ } };
  var touch = (time, loc) => {
@@ -32,27 +30,23 @@ setTimeout(() => exit());
   var tapX = loc[0];
   var tapY = loc[1];
   var tskr = shell("input tap " + tapX + ' ' + tapY, true, time);
-  var tskr = shell("history -d", true, time); 
  };
  var Conditions = () => {
   sleepFor(50);
-  var tskr = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
-  var Toggle = parseInt((global("%BotToggle")), 10);
-  var PID = parseInt(tskr, 10);
-  Status = PID + Toggle || null;
+  var tskr = shell("cat /proc/$(pidof com.jagex.runescape.android)/oom_adj", true, 0);
+  Status = ((parseInt(tskr, 10))+(parseInt(global("%BotToggle"), 10))) || null;
   if (Status >= 9) { Status = "bkgrnd"; };
   switch (Status){
-   default: flashLong("Conditions Error"); break;
    case null: Status = "Closed"; break;
    case "bkgrnd": Status = "Background"; break;
    case 1: Status = "Ready"; break;
    case 2: Status = "Bots Disabled"; break;
+   default: flashLong("Conditions Error"); break;
   };
  };
 // Script Start
  Conditions();
  switch (Status) {
-  default: flashLong("Script Error"); break;
   case "Closed": flash(Status); break;
   case "Bots Disabled": flash(Status); break;
   case "Background": flash(Status); break;
@@ -64,7 +58,12 @@ setTimeout(() => exit());
     touch(startWAIT, START);     
     sleepFor(restartWAIT);
     flash("loops: " + loops) 
-    if (Status != "Ready") { flash("Bot Closing"); };
-   };
+    if (Status != "Ready") { flash("Bot Closing"); }; 
+   }; 
+  default: flashLong("Script Error"); break;
  };
+ 
+ 
+ 
+ 
 exit();
