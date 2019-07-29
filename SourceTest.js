@@ -34,7 +34,7 @@ setTimeout(() => exit());
  };
  var Conditions = () => {
   sleepFor(10);
-  var tskr = shell("cat /proc/$(pidof com.jagex...android)/oom_adj", true, 0);
+  var tskr = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
   Status = ((parseInt(tskr, 10))+(parseInt(global("%BotToggle"), 10))) || null;
   if (Status >= 9) { Status = "bkgrnd"; };
   switch (Status){
