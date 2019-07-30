@@ -40,13 +40,11 @@ setTimeout(() => exit());
  };
  const Bag = (numsIn) => {   // Backpack! Backpack! ...      ï
   const Init = { 
-   Column : [ 
-    [2185,2050],[2350,2215],[2515,2380],[2680,2545] ],
-   Row : [ 
-    [265,140],[410,285],[555,430],[700,575],[845,720],[990,865],[1135,1010] ]};
+   Column : [ [2185,2050],[2350,2215],[2515,2380],[2680,2545] ],
+   Row : [ [265,140],[410,285],[555,430],[700,575],[845,720],[990,865],[1135,1010] ]};
   var slot = [], xR, yC;
-   xR = Math.floor(numsIn*(7/28)-1); yC = Math.ceil(numsIn*(4/28)-1);
-   slot = [ Init.Column[yC], Init.Row[xR] ];
+  xR = Math.floor(numsIn*(7/28)-1); yC = Math.ceil(numsIn*(4/28)-1);
+  slot = [ Init.Column[yC], Init.Row[xR] ];
  return Mix(slot); };
   
  
