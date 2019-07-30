@@ -142,7 +142,7 @@ setTimeout(() => exit());
  };
  var Conditions = () => { 
   Sleep(30);
-  var tskr = shell("cat /proc/$(pidof com.jagex.runescape.android)/oom_adj", true, 0);
+  var tskr = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
   STATUS = ((parseInt(tskr, 10))+(parseInt(global("%BotToggle"), 10))) || null;
   if      (STATUS >= 5)    { flash("Background"); exit(); }
   else if (STATUS == null) { flash("Game Closed"); exit(); }
