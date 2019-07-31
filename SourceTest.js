@@ -74,15 +74,15 @@ setTimeout(() => exit());
  Conditions(); Shuffle();             // Well this here needs som work                     
  if (STATUS == "Ready") { Shuffle(); Conditions(); 
    for (var loops = 1; STATUS == "Ready"; loops++, Shuffle(), Conditions()){    
-    Sleep(bankWAIT);                // Action Cycle Start
-    Touch(BANK);                   // 
-    Sleep(psetWAIT);              //
-    Touch(PSET);                 //
-    Sleep(invWAIT);             //
-    Touch(Bag(2));             //
-    Sleep(startWAIT);         //
-    Touch(START);            //
-    Sleep(restartWAIT);     // Action Cycle End
+    Sleep(bankWAIT);               // Action Cycle Start
+    Touch(BANK);                  // 
+    Sleep(psetWAIT);             //
+    Touch(PSET);                //
+    Sleep(invWAIT);            //
+    Touch(Bag(2));            //
+    Sleep(startWAIT);        //
+    Touch(START);           //
+    Sleep(restartWAIT);    // Action Cycle End
     flash("loops: " + loops); 
     if (STATUS == "Ready") { }
     else { flash("Bot Closing"); Sleep(400); break; } }; }
