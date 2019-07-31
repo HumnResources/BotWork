@@ -55,7 +55,7 @@ setTimeout(() => exit());
  const Touch = (loc) => { loc.flat(1); //
     if (loc.length == 2) {            // Tap command, tippy taps
    var shll = shell(`input tap ${loc[0]} ${loc[1]}`,true,0); }
-  else if (loc.length == 4) {       // Swipe command if set for two, untested in game
+  else if (loc.length == 4) {       // Swipe command, untested in game
    var shll = shell(`input swipe ${loc[0]} ${loc[1]} ${loc[2]} ${loc[3]}`,true,0); }; };
  
                  /*    Conditions Check    */
