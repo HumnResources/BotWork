@@ -1,90 +1,95 @@
 setTimeout(() => exit());
            /*    Button Locations and Wait Times    */                 
          //    |   Max X | Min X | Max Y | Min Y | //
- var BANK    = [   [1933,  1863], [504,   108]   ]; 
- var PSET    = [   [840,    740], [1290, 1205]   ];
- var START   = [   [2390,  1365], [1320, 1220]   ];
- var SKILL   = [   [500,    360], [980,   840]   ];
- var BOB     = [   [2025,  1935], [1245, 1165]   ];
- var BOBTAKE = [   [2270,  2215], [1120, 1070]   ]; 
- var TEST    = [   [700,    800], [1200, 1400]   ];
- //                |   | Max  | Min |   |   //
- var bankWAIT    = [   [1700,   2700]   ]; // Set wait time variances here
- var psetWAIT    = [   [1600,   3000]   ];//
- var invWAIT     = [   [1500,   2800]   ];
- var startWAIT   = [   [1700,   3000]   ];
- var restartWAIT = [   [11000, 12500]   ];
-
+ var setBANK    = [   [1933,  1863], [504,   108]   ]; 
+ var setPSET    = [   [840,    740], [1290, 1205]   ];
+ var setSTART   = [   [2390,  1365], [1320, 1220]   ];
+ var setSKILL   = [   [500,    360], [980,   840]   ];
+ var setBOB     = [   [2025,  1935], [1245, 1165]   ];
+ var setBOBTAKE = [   [2270,  2215], [1120, 1070]   ]; 
+ var setTEST    = [   [730,    720], [2860, 2855]   ];
+ var setBACK    = [   [2860,  2860], [1250, 1250]   ];
+ //                   |   | Max  | Min |   |   //
+ var setbankWAIT    = [   [1700,   2700]   ]; // Set wait time variances here
+ var setpsetWAIT    = [   [1600,   3000]   ];//
+ var setinvWAIT     = [   [1500,   2800]   ];
+ var setstartWAIT   = [   [1700,   3000]   ];
+ var setrestartWAIT = [   [11000, 12500]   ];
+ var settst         = [   [1420,   2875]   ]; 
+   
                      /*    Functions    */
  const Shuffle = () => {               // Take above values
-   BANK        = Mix(BANK);           // and shuffle them back
-   PSET        = Mix(PSET);          // 
-   START       = Mix(START);        //
-   SKILL       = Mix(SKILL);       //
-   BOB         = Mix(BOB);        //
-   BOBTAKE     = Mix(BOBTAKE);   //
-   TEST        = Mix(TEST);     //
-   bankWAIT    = Mix(bankWAIT);// ... This is just fun
-   psetWAIT    = Mix(psetWAIT);
-   invWAIT     = Mix(invWAIT);   
-   startWAIT   = Mix(startWAIT); 
-   restartWAIT = Mix(restartWAIT);};
+  BANK        = Mix(setBANK);         // and shuffle them back
+  PSET        = Mix(setPSET);        // with random # between range
+  START       = Mix(setSTART);      //
+  SKILL       = Mix(setSKILL);     //
+  BOB         = Mix(setBOB);      //
+  BOBTAKE     = Mix(setBOBTAKE); //
+  TEST        = Mix(setTEST);   // ... This is just fun lol
+  bankWAIT    = parseInt(Mix(setbankWAIT));
+  psetWAIT    = parseInt(Mix(setpsetWAIT));
+  invWAIT     = Mix(setinvWAIT);   
+  startWAIT   = parseInt(Mix(setstartWAIT)); 
+  restartWAIT = parseInt(Mix(setrestartWAIT)); 
+  tst         = Mix(settst);
+  TEST        = Mix(setTEST);};
 
                       /*    Sleep    */ 
- const Sleep = time => {            // Currently working on this one, below untested          
-  var now = new Date().getTime(); while (new Date().getTime() < now + time[1]){ } };
-
+ const Sleep = setTime => {         // Parse set time to integer, wait in milliseconds
+   if (Array.isArray(setTime)) { setTime = parseInt(setTime); };
+   var now = new Date().getTime(); while (new Date().getTime() < now + setTime){ } };  
+  
                       /*    Random    */
- const Mix = (Nmbrs) => {            // Cycles through each array with set of Min/Max
-   const Blndr = (Rndm) => {        //  Max #     Min #           Min #
-    return Math.floor(Math.random() * (Rndm[0] - Rndm[1] + 1)) + Rndm[1];};
-   if (Array.isArray(Nmbrs)) {    // Check for both Min/Max
-    return Nmbrs.flatMap(Blndr); }
-   else { alert("Mixing Error");};};
-   
+ const Mix = Nmbrs => {              // Cycles through each array with set of Max[0]/Min[1]
+  const Blnd = Rndm => Math.floor(Math.random() * (Rndm[0] - Rndm[1] + 1)) + Rndm[1];
+  if (Array.isArray(Nmbrs)) { return Nmbrs.flatMap(Blnd);} 
+  else { flashLong(`Mixing Error | ${Nmbrs}`);};};
+  
                 /*    Backpack! Backpack!    */
- const Bag = (numsIn) => {                  // 
-   const Init = {                          // Set Column and Row locations
-    Columns : [ [2185,2050],[2350,2215],[2515,2380],[2680,2545] ],
-    Rows : [ [265,140],[410,285],[555,430],[700,575],[845,720],[990,865],[1135,1010] ]};
-   var Slot = [], R = Math.ceil(numsIn*(7/28)); C = Math.ceil(numsIn/(28/4)-1);  
-   Slot = [ Init.Columns[C], Init.Rows[R] ];
- return Mix(Slot); };                 // Calculate Row/Column location and return
- 
+ const Bag = numsIn => {                    // 
+  const Init = {                           // Set Column and Row locations
+   Columns : [ [2185,2050],[2350,2215],[2515,2380],[2680,2545] ],
+   Rows : [ [265,140],[410,285],[555,430],[700,575],[845,720],[990,865],[1135,1010] ]};   var Slot = [], C = Math.ceil(numsIn/(28/4)-1),  R = Math.ceil(numsIn*(7/28));
+  var Slot = [ Init.Columns[C], Init.Rows[R] ];
+ return Mix(Slot); };                  // Calculate inv slot location and return
+
                    /*    Touch Input    */
- const Touch = (loc) => { loc.flat(1); //
-    if (loc.length == 2) {            // Tap command, tippy taps
-   var shll = shell(`input tap ${loc[0]} ${loc[1]}`,true,0); }
-  else if (loc.length == 4) {       // Swipe command, untested in game
-   var shll = shell(`input swipe ${loc[0]} ${loc[1]} ${loc[2]} ${loc[3]}`,true,0); }; };
- 
-                 /*    Conditions Check    */
- var Conditions = () => { Sleep(10);      // Check PID of game, is it open?
+ const Touch = (pause, loc) => {       // Tap/swipe commands
+  switch (loc.length) {               // 
+   case 2: Sleep(pause); return shll = shell(`input tap ${loc[0]} ${loc[1]}`,true,0);   
+   case 4: Sleep(pause); return shll = shell(`input swipe ${loc[0]} ${loc[1]} ${loc[2]} ${loc[3]}`,true,0); }; };
+
+                  /*    Conditions Check    */
+ const Conditions = () => { Sleep(100);    // Check PID of game, is it open?
   var shll = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
   STATUS = parseInt(global(`%BotToggle`),10) + parseInt(shll,10) || null;
   if (STATUS >= 9) { STATUS = `bkgrd`; };
   switch (STATUS){                    // Add value of toggle & PID, continue if ready
-   default: alert("Conditions Error"); exit();
+   default: flashLong("Conditions Error"); exit();
    case null: STATUS = "Closed"; flash(STATUS); exit();
    case `bkgrd`: STATUS = "Background"; flash(STATUS); exit();
-   case 3: STATUS = "Bots Disabled"; flash(STATUS); exit();
-   case 2: STATUS = "Ready"; flash(STATUS); break; }; };
+   case 2: STATUS = "Bots Disabled"; flash(STATUS); exit();
+   case 1: STATUS = "Ready"; break; }; };
  
                  /*    Script Start    */
- Conditions(); Shuffle();             // Well this here needs som work                     
- if (STATUS == "Ready") { Shuffle(); Conditions(); 
-   for (var loops = 1; STATUS == "Ready"; loops++, Shuffle(), Conditions()){    
-    Sleep(bankWAIT);               // Action Cycle Start
-    Touch(BANK);                  // 
-    Sleep(psetWAIT);             //
-    Touch(PSET);                //
-    Sleep(invWAIT);            //
-    Touch(Bag(2));            //
-    Sleep(startWAIT);        //
-    Touch(START);           //
-    Sleep(restartWAIT);    // Action Cycle End
-    flash("loops: " + loops); 
-    if (STATUS == "Ready") { }
-    else { flash("Bot Closing"); Sleep(400); break; } }; }
- 
+ Sleep(1000);                         //
+ Conditions(); Shuffle();            // Script start, WIP                  
+ if (STATUS == "Ready") {           //
+  flash(STATUS);                   //
+   while (STATUS == "Ready"){     //
+  		Touch(bankWAIT, BANK);       //
+    Touch(psetWAIT, PSET);      //
+    Touch(invWAIT, Bag(2));    //           
+    Touch(startWAIT, START);  //  
+    Sleep(restartWAIT);      //       
+    flash("Loop done")      //
+    Shuffle(); Conditions();
+    if (STATUS != "Ready") { flash("Bot Closing"); Sleep(400); exit(); }; }; }
+ else { flashLong("Script Error"); };
 exit();
+ 
+
+
+
+
+ 
