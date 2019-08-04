@@ -78,15 +78,15 @@ setTimeout(() => exit());
  if (STATUS == "Ready") {           //
   flash(STATUS);                   //
    while (STATUS == "Ready"){     //
-  	 Sleep(bankWAIT);             //
-  		Touch(BANK);                //
-  		Sleep(psetWAIT);           //
-  		Touch(PSET);              //
-  		Sleep(invWAIT);          //
-  		Touch(Bag(2));          //
-  		Sleep(startWAIT);      //
-  		Touch(START);         //
-  		Sleep(restartWAIT);  //
+    Sleep(bankWAIT);             //
+    Touch(BANK);                //
+    Sleep(psetWAIT);           //
+    Touch(PSET);              //
+    Sleep(invWAIT);          //
+    Touch(Bag(2));          //
+    Sleep(startWAIT);      //
+    Touch(START);         //
+    Sleep(restartWAIT);  //
     flash("Loop done")  //
     Shuffle(); Conditions();
     if (STATUS != "Ready") { flash("Bot Closing"); Sleep(400); exit(); }; }; }
