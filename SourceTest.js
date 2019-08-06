@@ -66,7 +66,7 @@ setTimeout(() => exit());
  };
      /*    Conditions Check    */
  const Conditions = () => {   // Check PID of game, is it open?
-  var shll = shell("cat /proc/$(pidof com.jagex.runescape.android)/oom_adj", true, 0);
+  var shll = shell("cat /proc/$(pidof com...android)/oom_adj", true, 0);
   STATUS = parseInt(global(`%BotToggle`),10) + parseInt(shll,10) || null;
   if (STATUS >= 9) { STATUS = `bkgrd`; };
   switch (STATUS){        // Add value of toggle & PID, continue if ready
