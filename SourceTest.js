@@ -8,8 +8,8 @@ setTimeout(() => exit());
  var setBOB     = [  [2025, 1935],  [1245, 1165]  ];
  var setBOBTAKE = [  [2270, 2215],  [1120, 1070]  ]; 
              /*    Wait Times    */ 
-            //        |   | Max  | Min |   |     
- var setbankWAIT    = [   [1200,   4000]   ]; // Set wait time variances here
+            //        |   | Max  | Min |   | Set wait time variances here
+ var setbankWAIT    = [   [1200,   4000]   ]; 
  var setpsetWAIT    = [   [1200,   3500]   ];
  var setinvWAIT     = [   [1200,   3200]   ];
  var setstartWAIT   = [   [1200,   3300]   ];
@@ -86,10 +86,10 @@ setTimeout(() => exit());
   return array;
   };
      /*    Random Inventory Touch List    */
- const RandInvTouch = () => {
-  const InvShuffle = x => {
-   Shuffle(); Conditions();
-   Sleep(SKILLwait); 
+ const RandInvTouch = () => {            // Get random range of Inv slots
+  const InvShuffle = x => {             // Check game conditions
+   Shuffle(); Conditions();            // Loop random Inv Slot cycle
+   Sleep(SKILLwait);                  // Return after total Inv slots looped
    Touch(SKILL);
    Sleep(SKILLwait);
    Touch(Bag(x)); return; };
